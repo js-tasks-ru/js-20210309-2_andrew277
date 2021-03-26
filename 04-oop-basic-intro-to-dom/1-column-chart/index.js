@@ -13,10 +13,8 @@ export default class ColumnChart {
     this.render();
   }
 
-  render() {
-    const element = document.createElement('div'); // (*)
-
-    element.innerHTML = `
+  get template () {
+    return `
       <div class="column-chart ${this.data.length || 'column-chart_loading'}"
            style="--chart-height: ${this.chartHeight}"
       >
@@ -32,6 +30,12 @@ export default class ColumnChart {
         </div>
       </div>
     `;
+  }
+
+  render() {
+    const element = document.createElement('div'); // (*)
+
+    element.innerHTML = this.template;
 
     // NOTE: в этой строке мы избавляемся от обертки-пустышки в виде `div`
     // который мы создали на строке (*)
